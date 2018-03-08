@@ -176,3 +176,27 @@ exports.getUserInfo = function (req, res) {
         });
     });
 };
+
+exports.statistics = function (req, res) {
+    if (!!req.user && req.user._id === VALUE.MASTER_ID) {
+        utils.respondFailure(res, '访问了自己的主页');
+        return;
+    }
+    UserModel.findById(VALUE.MASTER_ID, 'visitTimes', function (err, user) {
+        if (!!err || !user) {
+            utils.respondFailure(res, '查询管理员失败');
+            return;
+        }
+        if (!user.visitTimes) {
+            user.visitTimes = 0;
+        }
+        user.visitTimes += 1;
+        user.save(function (err) {
+            if (!!err) {
+                utils.respondFailure(res, '保存管理员信息失败');
+                return;
+            }
+            utils.respondSuccess(res);
+        });
+    });
+};

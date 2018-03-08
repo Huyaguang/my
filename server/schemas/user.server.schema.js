@@ -45,7 +45,13 @@ module.exports = function () {
             required: 'Provider is required',
             default: 'local'
         },
-        description: String
+        description: String,
+        // 主页被访问次数
+        visitTimes: {
+            type: Number,
+            required: true,
+            default: 0
+        }
     };
     return userSchema;
 };

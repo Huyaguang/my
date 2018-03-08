@@ -60,3 +60,4 @@ typings/
 # mongo-data public/lib
 mongo-data
 public/lib
+.DS_Store

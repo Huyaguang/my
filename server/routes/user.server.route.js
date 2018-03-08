@@ -21,4 +21,6 @@ module.exports = function (app) {
     app.get('/favicon.ico', user.favicon);
 
     app.get('/userinfo', user.getUserInfo);
+
+    app.get('/statistics', user.statistics);
 };
