@@ -13,7 +13,7 @@ exports.BLOG_TYPE = {
 };
 
 if (process.env.NODE_ENV === 'production') {
-    exports.MASTER_ID = '58788b23b53e99023ad37b1b';
+    exports.MASTER_ID = '5aa10ee8cd78b025b7593041';
 } else if (process.env.NODE_ENV === 'development') {
     exports.MASTER_ID = '58788dc364a1d01509d83e55';
 }
