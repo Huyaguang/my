@@ -177,7 +177,25 @@ exports.getUserInfo = function (req, res) {
     });
 };
 
+/**
+ * 获取用户请求IP
+ */
+var getCallerIP = function (request) {
+    var ip = request.headers['x-forwarded-for']
+            || request.connection.remoteAddress
+            || request.socket.remoteAddress
+            || request.connection.socket.remoteAddress;
+
+
+    ip = ip.split(',')[0];
+    ip = ip.split(':').slice(-1)[0]; //in case the ip returned in a format: "::ffff:146.xxx.xxx.xxx"
+    return ip;
+};
+
 exports.statistics = function (req, res) {
+    console.log(getCallerIP(req));
+    console.log(new Date());
+
     if (!!req.user && req.user._id === VALUE.MASTER_ID) {
         utils.respondFailure(res, '访问了自己的主页');
         return;
